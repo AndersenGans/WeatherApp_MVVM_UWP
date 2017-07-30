@@ -2,7 +2,12 @@
     x:Class="WeatherApp_MVVM.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WeatherApp_MVVM"
+    xmlns:infrastructure="using:WeatherApp_MVVM.Infrastructure"
     RequestedTheme="Light">
 
+    <Application.Resources>
+        <ResourceDictionary>
+            <infrastructure:ViewModelLocator x:Key="Locator" />
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>
