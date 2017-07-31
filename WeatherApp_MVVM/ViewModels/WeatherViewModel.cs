@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -144,7 +145,7 @@ namespace WeatherApp_MVVM.ViewModels
                 WaitingMessage = "";
                 RaisePropertyChanged(() => WaitingMessage);
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 WaitingMessage = "Connection error!";
                 RaisePropertyChanged(() => WaitingMessage);
@@ -157,6 +158,11 @@ namespace WeatherApp_MVVM.ViewModels
             catch (ArgumentException ex)
             {
                 WaitingMessage = ex.Message;
+                RaisePropertyChanged(() => WaitingMessage);
+            }
+            catch (Newtonsoft.Json.JsonSerializationException)
+            {
+                WaitingMessage = "Not so fast!";
                 RaisePropertyChanged(() => WaitingMessage);
             }
         }
@@ -178,7 +184,7 @@ namespace WeatherApp_MVVM.ViewModels
                 WaitingMessage = "";
                 RaisePropertyChanged(() => WaitingMessage);
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 WaitingMessage = "Connection error!";
                 RaisePropertyChanged(() => WaitingMessage);
